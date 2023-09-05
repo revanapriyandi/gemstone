@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="application-name" content="Gemstone" />
+    <link rel="icon" type="image/x-icon" href="logo/logo.ico" />
+    <meta name="theme-color" content="#111340">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content>
+    <meta name="author" content>
+    <link href="/assets/app/css/app.css" rel="stylesheet" type="text/css" />
+    <title>Gemstone - Offline!</title>
+</head>
+
+<body style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #111340;">
+    <div class="container">
+        <br />
+        <div class="text-center">
+            <img src="/logo/logo.png" alt="Gemstone" width="230px">
+            <br /><br />
+        </div>
+        <div class="text-center" style="display: none" id="loading">
+            <i class="fas fa-spinner fa-spin fa-2x"></i>
+            <br /><br /><a href="/" style="display:none; color:white" class="text-primary" id="redirect_btn">Click here
+                if not redirected.</a>
+        </div>
+        <div class="text-center" style="display: none" id="offline_info">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="font-weight: 400; margin-bottom: 5px; color: #ffffff" class="text-white">Disconnected
+                        from Network</h2>
+                    <p style="font-weight: 200" style="color: #ffffff" class="text-white">
+                        Please check your internet connection!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/app/js/app.js" type="text/javascript"></script>
+    <script>
+        window.addEventListener('load', function (e) {
+            if (navigator.onLine) {
+                $('#offline_info').fadeOut(300);
+                $('#loading').fadeIn(600);
+                window.setTimeout(function () { window.location.href = "/"; }, 1000);
+                $('#redirect_btn').fadeIn(2000);
+            } else {
+                $('#loading').fadeOut(300);
+                $('#offline_info').fadeIn(600);
+            }
+        }, false);
+
+        window.addEventListener('online', function (e) {
+            $('#offline_info').fadeOut(300);
+            $('#loading').fadeIn(600);
+            window.setTimeout(function () { window.location.href = "/"; }, 1000);
+            $('#redirect_btn').fadeIn(2000);
+        }, false);
+
+        window.addEventListener('offline', function (e) {
+            $('#loading').fadeOut(300);
+            $('#offline_info').fadeIn(600);
+        }, false);
+    </script>
+</body>
+
+</html>
